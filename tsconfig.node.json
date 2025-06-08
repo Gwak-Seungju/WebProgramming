@@ -7,8 +7,7 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@pages/*": ["src/pages/*"],
+      "@/*": ["*"]
     },
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -30,6 +29,7 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
+    ".",
     "vite.config.ts",
     "src",
     "src/custom.d.ts",

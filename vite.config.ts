@@ -10,6 +10,11 @@ export default defineConfig({
     svgr({ include: '**/*.svg' }),
     tsconfigPaths(),
   ],
+  resolve: {
+    alias: {
+      '@': '/src',
+    }
+  },
   server: {
     port: 3000,
     open: true,
