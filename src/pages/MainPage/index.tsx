@@ -1,5 +1,7 @@
 import { useLatestFriendPosts } from './hooks/useLatestFriendPosts';
 import styles from './MainPage.module.scss';
+import PersonIcon from '@/assets/person.svg';
+import { useNeighborList } from '@/hooks/neighbor/useNeighborList';
 import useUserInfo from '@/hooks/useUserInfo';
 
 export default function MainPage() {
@@ -8,36 +10,54 @@ export default function MainPage() {
 		data: posts,
 		isLoading,
 		error,
-	} = useLatestFriendPosts(userInfo!.user_id);
+	} = useLatestFriendPosts(userInfo?.user_id ?? null);
+	const { data: neighbors } = useNeighborList(userInfo?.user_id ?? null);
 
 	if (isLoading) return <p>불러오는 중...</p>;
 	if (error) return <p>에러 발생: {error.message}</p>;
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.writings}>
-				<h3>이웃 새글</h3>
+			<div className={styles.neighborPosts}>
+				<h2>이웃 새글</h2>
 				{!posts || posts.length === 0 ? (
 					<p>이웃 글이 없습니다.</p>
 				) : (
-					<ul>
+					<div className={styles.posts}>
 						{posts.map((post) => (
-							<li key={post.post_id}>
-								<h4>{post.title}</h4>
-								<p>{post.content}</p>
+							<div key={post.post_id} className={styles.post}>
+								<div className={styles.post__info}>
+									<div className={styles.personIcon}>
+										<PersonIcon />
+									</div>
+									<div>
+										<div className={styles['post__info--user']}>
+											{post.username}
+										</div>
+										<div className={styles['post__info--time']}>
+											{post.created_at}
+										</div>
+									</div>
+								</div>
+								<h3 className={styles.post__title}>{post.title}</h3>
+								<p className={styles.post__content}>{post.content}</p>
 								<div>
-									<span>작성자: {post.username}</span> |{' '}
-									<span>좋아요: {post.likes_count}</span> |{' '}
+									<span>공감: {post.likes_count}</span> |{' '}
 									<span>댓글: {post.comments_count}</span>
 								</div>
-							</li>
+							</div>
 						))}
-					</ul>
+					</div>
 				)}
 			</div>
 			<div className={styles.my}>
 				<div className={styles.my__info}>
-					<div className={styles['my__info--name']}>승주</div>
+					<div className={styles.my__userInfo}>
+						<div className={styles.personIcon}>
+							<PersonIcon />
+						</div>
+						<div className={styles['my__info--name']}>{userInfo?.username}</div>
+					</div>
 					<button className={styles['my__info--logout']}>로그아웃</button>
 				</div>
 				<div className={styles.my__blog}>
@@ -46,7 +66,11 @@ export default function MainPage() {
 				</div>
 				<div className={styles.my__neighbor}>
 					<div>이웃 목록</div>
-					<ul></ul>
+					<ul className={styles.neighborList}>
+						{(neighbors ?? []).map((neighbor) => (
+							<div key={neighbor.id}>{neighbor.username}</div>
+						))}
+					</ul>
 				</div>
 			</div>
 		</div>
