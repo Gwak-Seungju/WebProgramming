@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import axios from 'axios';
+import useSignup from '../hooks/useSignup';
 
 export default function SignupPage() {
+	const { mutate: signup } = useSignup();
 	const [form, setForm] = useState({
 		username: '1',
 		email: '1',
@@ -10,18 +11,7 @@ export default function SignupPage() {
 
 	const handleSubmit = async (e: { preventDefault: () => void }) => {
 		e.preventDefault();
-		try {
-			const res = await axios.post('http://localhost/term/signup.php', {
-				username: form.username,
-				email: form.email,
-				password: form.password,
-			});
-
-			alert(res.data.success ? '회원가입 성공!' : res.data.message);
-		} catch (err) {
-			alert(`회원가입 중 오류가 발생했습니다: ${err}`);
-			console.error(err); // 여기서 더 구체적인 오류 로그 확인 가능
-		}
+		signup(form);
 	};
 	return (
 		<form onSubmit={handleSubmit}>
