@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
+import Auth from './pages/Auth';
 import LoginPage from './pages/Auth/LoginPage';
 import SignupPage from './pages/Auth/SignupPage';
 import BoardPage from './pages/BoardPage';
@@ -11,10 +13,13 @@ function App() {
 			<Routes>
 				<Route path="/" element={<BoardPage />}>
 					<Route index element={<MainPage />} />
-					<Route path="login" element={<LoginPage />} />
-					<Route path="signup" element={<SignupPage />} />
+				</Route>
+				<Route path="/auth" element={<Auth />}>
+					<Route index element={<LoginPage />} />
+					<Route path="/auth/signup" element={<SignupPage />} />
 				</Route>
 			</Routes>
+			<ToastContainer />
 		</>
 	);
 }
