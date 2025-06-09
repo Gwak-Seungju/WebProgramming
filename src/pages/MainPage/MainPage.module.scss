@@ -1,0 +1,59 @@
+.container {
+  width: 1132px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.writings {
+
+}
+
+.my {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d2d2d2;
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #61C3FA33;
+    padding: 12px;
+
+    &--name {
+      font-family: Pretendard;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 100%;
+    }
+
+    &--logout {
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &__blog {
+    // display: flex;
+
+    & > button {
+      width: 50%;
+      border: 1px solid #d2d2d2;
+      background-color: #237BFF;
+      padding: 12px;
+      color: #fff;
+    }
+  }
+
+  &__neighbor {
+    padding: 12px;
+
+    & > ul {
+      max-height: 480px;
+      overflow: scroll;
+      
+    }
+  }
+}
