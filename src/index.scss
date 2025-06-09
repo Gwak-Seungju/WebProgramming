@@ -1,0 +1,14 @@
+#root {
+  min-width: 1132px;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
+
+button {
+  cursor: pointer;
+}

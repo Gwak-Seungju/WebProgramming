@@ -19,27 +19,41 @@ export default function Header() {
 	};
 
 	return (
-		<div className={styles.container}>
-			<div>G blog</div>
-			<div>
-				<input type="text" />
-				<button>검색</button>
-			</div>
-			<div>
-				{userInfo ? (
-					<div>
-						<div>{userInfo.username} 님, 안녕하세요</div>
-						<div>
-							<button onClick={() => navigate('/auth/mypage')}>
-								마이페이지
-							</button>
-							<button onClick={logout}>로그아웃</button>
-						</div>
+		<header>
+			<div className={styles.container}>
+				<div className={styles.container__left}>
+					<button className={styles.logo} onClick={() => navigate('/')}>
+						G blog
+					</button>
+					<div className={styles.search}>
+						<input
+							type="text"
+							className={styles.search__input}
+							placeholder="검색어를 입력해주세요"
+						/>
+						<button className={styles.search__button}>검색</button>
 					</div>
-				) : (
-					<button onClick={() => navigate('/auth')}>로그인</button>
-				)}
+				</div>
+				<div className={styles.container__right}>
+					{userInfo ? (
+						<div className={styles.loggedIn}>
+							<div className={styles.loggedIn__user}>
+								<span>{userInfo.username}</span> 님, 안녕하세요
+							</div>
+							<div className={styles.loggedIn__menu}>
+								<button onClick={() => navigate('/auth/mypage')}>
+									마이페이지
+								</button>
+								<button onClick={logout}>로그아웃</button>
+							</div>
+						</div>
+					) : (
+						<button className={styles.login} onClick={() => navigate('/auth')}>
+							로그인
+						</button>
+					)}
+				</div>
 			</div>
-		</div>
+		</header>
 	);
 }
