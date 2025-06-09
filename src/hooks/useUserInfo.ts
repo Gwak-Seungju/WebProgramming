@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export interface UserInfo {
@@ -7,10 +7,7 @@ export interface UserInfo {
 	email: string;
 }
 
-const fetchUserInfo = async (): Promise<UserInfo> => {
-	const userId = localStorage.getItem('user_id');
-	if (!userId) throw new Error('로그인이 필요합니다.');
-
+const fetchUserInfo = async (userId: string): Promise<UserInfo> => {
 	const res = await axios(`http://localhost/term/user.php?user_id=${userId}`);
 	const data = await res.data;
 
@@ -22,10 +19,12 @@ const fetchUserInfo = async (): Promise<UserInfo> => {
 };
 
 export default function useUserInfo() {
-	return useQuery({
+	const userId = localStorage.getItem('user_id');
+
+	return useSuspenseQuery({
 		queryKey: ['userInfo'],
 
-		queryFn: fetchUserInfo,
+		queryFn: () => (userId ? fetchUserInfo(userId) : null),
 
 		staleTime: 1000 * 60 * 10, // 10 minutes
 		gcTime: 1000 * 60 * 60, // 1 hour
