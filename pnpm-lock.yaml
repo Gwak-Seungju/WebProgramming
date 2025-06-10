@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@bcsdlab/utils':
+        specifier: ^0.0.15
+        version: 0.0.15
       '@tanstack/react-query':
         specifier: ^5.80.6
         version: 5.80.6(react@19.1.0)
@@ -174,6 +177,9 @@ packages:
   '@babel/types@7.27.3':
     resolution: {integrity: sha512-Y1GkI4ktrtvmawoSq+4FCVHNryea6uR+qUQy0AGxLSsjCX0nVmkYQMBLHDkXZuo5hGx7eYdnIaslsdBFm7zbUw==}
     engines: {node: '>=6.9.0'}
+
+  '@bcsdlab/utils@0.0.15':
+    resolution: {integrity: sha512-JWJtqsVOMlfHokjCWvPBsA09Zsc2KPqR/z8s/oSzUmuQ3Q9xnKKTkswUffRhb+nv4h5ittCbZxU3QwqkEJFNCg==}
 
   '@esbuild/aix-ppc64@0.25.5':
     resolution: {integrity: sha512-9o3TMmpmftaCMepOdA5k/yDw8SfInyzWWTjYTFCX3kPSDJMROQTb8jg+h9Cnwnmm1vOzvxN7gIfB5V2ewpjtGA==}
@@ -767,6 +773,9 @@ packages:
 
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
+
+  '@types/josa@3.0.5':
+    resolution: {integrity: sha512-BqvmnnEscpq70IgsfXSRQv+t34hBPxoDGB2+q8cGpXkUwmXZ+IH9K+U3dbD0CnDgTlaY+4KpVp7iu3MRcIJctg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1581,6 +1590,12 @@ packages:
     resolution: {integrity: sha512-H0dkQoCa3b2VEeKQBOxFph+JAbcrQdE7KC0UkqwpLmv2EC4P41QXP+rqo9wYodACiG5/WM5s9oDApTU8utwj9g==}
     engines: {node: '>= 0.4'}
 
+  jongseong@0.4.2:
+    resolution: {integrity: sha512-wBNM0B48CgphzeIIGo4vFqrAg4wlxppj7fAMa7kZ2PGgwGzoheWxyiBhz4eIxUtlVPMk9gvUsSxG9pMsTyjfSw==}
+
+  josa@3.0.1:
+    resolution: {integrity: sha512-naRZOzWy/02AbP5p4Tz4lj7wpIJ93+hPk/mne8yHCpT2UZglhh2BF0f/j7SIITqZpb834B0DZ0RjJCrKji3qOQ==}
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -2283,6 +2298,11 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
+  '@bcsdlab/utils@0.0.15':
+    dependencies:
+      '@types/josa': 3.0.5
+      josa: 3.0.1
+
   '@esbuild/aix-ppc64@0.25.5':
     optional: true
 
@@ -2709,6 +2729,8 @@ snapshots:
       react: 19.1.0
 
   '@types/estree@1.0.7': {}
+
+  '@types/josa@3.0.5': {}
 
   '@types/json-schema@7.0.15': {}
 
@@ -3725,6 +3747,12 @@ snapshots:
       get-proto: 1.0.1
       has-symbols: 1.1.0
       set-function-name: 2.0.2
+
+  jongseong@0.4.2: {}
+
+  josa@3.0.1:
+    dependencies:
+      jongseong: 0.4.2
 
   js-tokens@4.0.0: {}
 
