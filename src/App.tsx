@@ -4,8 +4,10 @@ import Auth from './pages/Auth';
 import LoginPage from './pages/Auth/LoginPage';
 import MyPage from './pages/Auth/MyPage';
 import SignupPage from './pages/Auth/SignupPage';
+import BlogPage from './pages/BlogPage';
 import BoardPage from './pages/BoardPage';
 import MainPage from './pages/MainPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
 	return (
@@ -13,6 +15,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<BoardPage />}>
 					<Route index element={<MainPage />} />
+					<Route path="/blog/:userId" element={<BlogPage />} />
+					<Route path="/search" element={<SearchPage />} />
 				</Route>
 				<Route path="/auth" element={<Auth />}>
 					<Route index element={<LoginPage />} />

@@ -1,0 +1,60 @@
+.container {
+  width: 1132px;
+  margin: 24px auto;
+}
+
+.result {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  color: #828282;
+
+  &__keyword {
+    font-weight: 600;
+    color: #237BFF;
+  }
+
+  &__count {
+    font-weight: 600;
+    color: #000;
+    margin-left: 8px;
+  }
+}
+
+.content {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__result {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 12px 0;
+  }
+}
+
+.personIcon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #d2d2d2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.user {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: fit-content;
+  background-color: inherit;
+  border: none;
+
+  &__name {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}

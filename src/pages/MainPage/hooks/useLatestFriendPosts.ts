@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-export interface FriendPost {
+export interface Post {
 	post_id: number;
 	title: string;
 	content: string;
@@ -12,7 +12,7 @@ export interface FriendPost {
 }
 
 export const useLatestFriendPosts = (user_id: number | null) => {
-	return useSuspenseQuery<FriendPost[]>({
+	return useSuspenseQuery<Post[]>({
 		queryKey: ['latestFriendPosts', user_id],
 		queryFn: async () => {
 			if (!user_id) return []; // return empty array if no user_id

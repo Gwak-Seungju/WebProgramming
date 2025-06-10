@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
@@ -7,6 +8,12 @@ export default function Header() {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 	const { data: userInfo } = useUserInfo();
+	const [keyword, setKeyword] = useState('');
+	const [filter, setFilter] = useState<'post' | 'neighbor'>('post');
+
+	const handleSearch = () => {
+		navigate(`/search?keyword=${encodeURIComponent(keyword)}&filter=${filter}`);
+	};
 
 	const logout = () => {
 		localStorage.removeItem('user_id');
@@ -26,12 +33,29 @@ export default function Header() {
 						G blog
 					</button>
 					<div className={styles.search}>
+						<select
+							className={styles.search__filter}
+							value={filter}
+							onChange={(e) => setFilter(e.target.value as 'post' | 'neighbor')}
+						>
+							<option value="post">글</option>
+							<option value="neighbor">이웃</option>
+						</select>
 						<input
 							type="text"
 							className={styles.search__input}
 							placeholder="검색어를 입력해주세요"
+							value={keyword}
+							onChange={(e) => setKeyword(e.target.value)}
+							onKeyUp={(e) => {
+								if (e.key === 'Enter') {
+									handleSearch();
+								}
+							}}
 						/>
-						<button className={styles.search__button}>검색</button>
+						<button className={styles.search__button} onClick={handleSearch}>
+							검색
+						</button>
 					</div>
 				</div>
 				<div className={styles.container__right}>
@@ -44,7 +68,7 @@ export default function Header() {
 								<button onClick={() => navigate('/auth/mypage')}>
 									마이페이지
 								</button>
-								<button onClick={logout}>로그아웃</button>
+								|<button onClick={logout}>로그아웃</button>
 							</div>
 						</div>
 					) : (
