@@ -13,9 +13,13 @@ export default function useLogin() {
 
 	const mutate = useMutation({
 		mutationFn: async (form: LoginForm) => {
-			const res = await axios.post('http://localhost/term/login.php', form, {
-				headers: { 'Content-Type': 'application/json' },
-			});
+			const res = await axios.post(
+				'http://localhost/term/auth/login.php',
+				form,
+				{
+					headers: { 'Content-Type': 'application/json' },
+				},
+			);
 			return res.data;
 		},
 		onSuccess: (data) => {

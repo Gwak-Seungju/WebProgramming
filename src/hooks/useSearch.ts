@@ -29,7 +29,7 @@ export const useSearch = (keyword: string, filter: 'post' | 'neighbor') => {
 			}
 
 			const { data } = await axios.get<SearchData>(
-				`http://localhost/term/search.php`,
+				`http://localhost/term/neighbor/search.php`,
 				{
 					params: {
 						user_id: userId,

@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { Post } from '@/utils/post';
 
 const fetchPosts = async (userId: string): Promise<Post[]> => {
-	const { data } = await axios.get('http://localhost/term/posts.php', {
+	const { data } = await axios.get('http://localhost/term/post/posts.php', {
 		params: { user_id: userId },
 	});
 

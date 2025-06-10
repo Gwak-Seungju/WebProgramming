@@ -14,7 +14,7 @@ export default function useSignup() {
 
 	const mutate = useMutation({
 		mutationFn: async (form: SignupForm) => {
-			const res = await axios.post('http://localhost/term/signup.php', {
+			const res = await axios.post('http://localhost/term/auth/signup.php', {
 				username: form.username,
 				email: form.email,
 				password: form.password,

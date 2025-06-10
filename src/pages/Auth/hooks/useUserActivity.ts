@@ -11,7 +11,7 @@ export const useUserActivity = (user_id: number) => {
 		queryKey: ['userActivity', user_id],
 		queryFn: async () => {
 			const { data } = await axios.get(
-				`http://localhost/term/activity.php?user_id=${user_id}`,
+				`http://localhost/term/user/activity.php?user_id=${user_id}`,
 			);
 			if (!data.success) throw new Error('불러오기 실패');
 			return {

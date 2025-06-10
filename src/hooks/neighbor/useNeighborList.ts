@@ -12,7 +12,7 @@ export const useNeighborList = (userId: number | null) => {
 		queryKey: ['friendList', userId],
 		queryFn: async () => {
 			const { data } = await axios.get(
-				`http://localhost/term/get_friend.php?user_id=${userId}`,
+				`http://localhost/term/neighbor/get_friend.php?user_id=${userId}`,
 			);
 
 			if (!data.success) {

@@ -9,7 +9,7 @@ export function useFriendStatus(myId: string, targetId: string) {
 		queryKey: ['isFriend', myId, targetId],
 		queryFn: async () => {
 			const res = await axios.get(
-				`http://localhost/term/is_friend?my_id=${myId}&target_id=${targetId}`,
+				`http://localhost/term/neighbor/is_friend.php?my_id=${myId}&target_id=${targetId}`,
 			);
 			return res.data.isFriend; // true or false
 		},
@@ -18,7 +18,7 @@ export function useFriendStatus(myId: string, targetId: string) {
 
 	const addFriend = useMutation({
 		mutationFn: () =>
-			axios.post('http://localhost/term/add_friend', {
+			axios.post('http://localhost/term/neighbor/add_friend.php', {
 				my_id: myId,
 				target_id: targetId,
 			}),
@@ -28,7 +28,7 @@ export function useFriendStatus(myId: string, targetId: string) {
 
 	const deleteFriend = useMutation({
 		mutationFn: () =>
-			axios.post('http://localhost/term/delete_friend', {
+			axios.post('http://localhost/term/neighbor/delete_friend.php', {
 				my_id: myId,
 				target_id: targetId,
 			}),

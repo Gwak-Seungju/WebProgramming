@@ -12,7 +12,7 @@ export const useEditProfile = () => {
 	return useMutation({
 		mutationFn: async ({ user_id, username }: EditProfileParams) => {
 			const { data } = await axios.post(
-				'http://localhost/term/edit_profile.php',
+				'http://localhost/term/user/edit_profile.php',
 				{
 					user_id,
 					username,

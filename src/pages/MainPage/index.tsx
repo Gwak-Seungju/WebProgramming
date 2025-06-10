@@ -16,6 +16,10 @@ export default function MainPage() {
 	} = useLatestFriendPosts(userInfo?.user_id ?? null);
 	const { data: neighbors } = useNeighborList(userInfo?.user_id ?? null);
 
+	const goNeighborBlog = (id: number, name: string) => {
+		navigate(`/blog/${name}/${id}`);
+	};
+
 	if (isLoading) return <p>불러오는 중...</p>;
 	if (error) return <p>에러 발생: {error.message}</p>;
 
@@ -53,7 +57,11 @@ export default function MainPage() {
 					<div className={styles['my__neighbor--title']}>이웃 목록</div>
 					<div className={styles.neighborList}>
 						{(neighbors ?? []).map((neighbor) => (
-							<button key={neighbor.id} className={styles.my__userInfo}>
+							<button
+								key={neighbor.id}
+								className={styles.my__userInfo}
+								onClick={() => goNeighborBlog(neighbor.id, neighbor.username)}
+							>
 								<div className={styles.personIcon}>
 									<PersonIcon />
 								</div>

@@ -8,7 +8,7 @@ export const useLatestFriendPosts = (user_id: number | null) => {
 		queryFn: async () => {
 			if (!user_id) return []; // return empty array if no user_id
 			const { data } = await axios.get(
-				`http://localhost/term/latest_friend_posts.php?user_id=${user_id}`,
+				`http://localhost/term/neighbor/latest_friend_posts.php?user_id=${user_id}`,
 			);
 
 			if (!data.success) {

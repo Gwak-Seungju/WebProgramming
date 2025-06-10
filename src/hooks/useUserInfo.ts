@@ -8,7 +8,9 @@ export interface UserInfo {
 }
 
 const fetchUserInfo = async (userId: string): Promise<UserInfo> => {
-	const res = await axios(`http://localhost/term/user.php?user_id=${userId}`);
+	const res = await axios(
+		`http://localhost/term/user/user.php?user_id=${userId}`,
+	);
 	const data = await res.data;
 
 	if (!data.success) {

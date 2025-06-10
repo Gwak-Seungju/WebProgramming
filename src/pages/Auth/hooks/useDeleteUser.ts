@@ -10,7 +10,7 @@ export const useDeleteUser = () => {
 	return useMutation({
 		mutationFn: async (user_id: number) => {
 			const { data } = await axios.post(
-				'http://localhost/term/delete_user.php',
+				'http://localhost/term/auth/delete_user.php',
 				{
 					user_id,
 				},
