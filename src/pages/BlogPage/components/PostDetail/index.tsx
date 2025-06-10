@@ -57,7 +57,6 @@ export default function PostDetailPage() {
 	if (error || !data.success) return <p>에러 발생</p>;
 
 	const post = data.post;
-	console.log(isCommentOpen);
 
 	return (
 		<div>
@@ -101,7 +100,10 @@ export default function PostDetailPage() {
 			{isCommentOpen && (
 				<div className={styles.commentContainer}>
 					{comments.map((comment) => (
-						<div className={styles.commentContainer__comment}>
+						<div
+							key={comment.comment_id}
+							className={styles.commentContainer__comment}
+						>
 							<button
 								className={styles.user}
 								onClick={() =>

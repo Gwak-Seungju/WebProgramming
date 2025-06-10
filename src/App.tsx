@@ -8,6 +8,7 @@ import BlogPage from './pages/BlogPage';
 import BoardPage from './pages/BoardPage';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
+import WritingPage from './pages/WritingPage';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<Route path=":postId" element={<BlogPage />} />
 					</Route>
 					<Route path="/search" element={<SearchPage />} />
+					<Route path="/write" element={<WritingPage />} />
 				</Route>
 				<Route path="/auth" element={<Auth />}>
 					<Route index element={<LoginPage />} />

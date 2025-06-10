@@ -15,7 +15,6 @@ export default function SearchPage() {
 	if (!data?.success) return <div>검색 실패: {data?.error}</div>;
 
 	const results = filter === 'neighbor' ? data.neighbors : data.posts;
-	console.log(results);
 
 	if (!results || results.length === 0) return <div>검색 결과가 없습니다.</div>;
 

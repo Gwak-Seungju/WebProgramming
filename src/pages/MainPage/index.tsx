@@ -51,7 +51,7 @@ export default function MainPage() {
 					>
 						내 블로그
 					</button>
-					<button>글 쓰기</button>
+					<button onClick={() => navigate('/write')}>글 쓰기</button>
 				</div>
 				<div className={styles.my__neighbor}>
 					<div className={styles['my__neighbor--title']}>이웃 목록</div>
