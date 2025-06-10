@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useLatestFriendPosts } from './hooks/useLatestFriendPosts';
 import styles from './MainPage.module.scss';
 import PersonIcon from '@/assets/person.svg';
@@ -6,6 +7,7 @@ import { useNeighborList } from '@/hooks/neighbor/useNeighborList';
 import useUserInfo from '@/hooks/useUserInfo';
 
 export default function MainPage() {
+	const navigate = useNavigate();
 	const { data: userInfo } = useUserInfo();
 	const {
 		data: posts,
@@ -38,7 +40,13 @@ export default function MainPage() {
 					<button className={styles['my__info--logout']}>로그아웃</button>
 				</div>
 				<div className={styles.my__blog}>
-					<button>내 블로그</button>
+					<button
+						onClick={() => {
+							navigate(`/blog/${userInfo?.username}/${userInfo?.user_id}`);
+						}}
+					>
+						내 블로그
+					</button>
 					<button>글 쓰기</button>
 				</div>
 				<div className={styles.my__neighbor}>

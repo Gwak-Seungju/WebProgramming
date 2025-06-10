@@ -1,5 +1,5 @@
 import styles from './PostsList.module.scss';
-import type { Post } from '@/pages/MainPage/hooks/useLatestFriendPosts';
+import type { Post } from '@/utils/post';
 import PersonIcon from '@/assets/person.svg';
 
 interface PostsListProps {
@@ -7,6 +7,8 @@ interface PostsListProps {
 }
 
 export default function PostsList({ posts }: PostsListProps) {
+	if (!posts || posts.length === 0) return <p>등록된 글이 없습니다.</p>;
+
 	return (
 		<div className={styles.posts}>
 			{posts.map((post) => (
