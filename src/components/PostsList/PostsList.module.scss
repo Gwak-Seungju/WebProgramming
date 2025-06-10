@@ -4,6 +4,17 @@
   padding-right: 24px;
 }
 
+.personIcon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d2d2d2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
 .post {
   padding: 24px 0;
   border-bottom: 1px solid #d2d2d2;
@@ -34,11 +45,22 @@
 
   &__title {
     font-family: Pretendard;
+    width: fit-content;
     font-size: 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      text-decoration-color: #000;
+    }
   }
 
   &__content {
     color: #828282;
+    width: fit-content;
     font-family: Pretendard;
     font-weight: 400;
     font-size: 16px;
@@ -47,5 +69,13 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      text-decoration-color: #828282;
+    }
   }
 }
