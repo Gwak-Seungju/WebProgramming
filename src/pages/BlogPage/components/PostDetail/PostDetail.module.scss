@@ -73,14 +73,12 @@
 }
 
 .commentContainer {
-  position: absolute;
-  left: 0;
-  top: 60px;
   background-color: #CAE8FA;
   width: 100%;
   min-height: 120px;
   border-radius: 8px;
   padding: 12px;
+  margin-top: 12px;
 
   &__comment {
     padding: 16px 0;

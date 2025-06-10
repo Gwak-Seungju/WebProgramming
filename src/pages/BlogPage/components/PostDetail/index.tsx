@@ -97,55 +97,52 @@ export default function PostDetailPage() {
 						<ChevronDownIcon />
 					</div>
 				</button>
-				{isCommentOpen && (
-					<div className={styles.commentContainer}>
-						{comments.map((comment) => (
-							<div className={styles.commentContainer__comment}>
-								<button
-									className={styles.user}
-									onClick={() =>
-										goNeighborBlog(comment.user_id, comment.username)
-									}
-								>
-									<div className={styles.personIcon}>
-										<PersonIcon />
-									</div>
-									<div className={styles.user__name}>{comment.username}</div>
-								</button>
-								<div className={styles['commentContainer__comment--content']}>
-									{comment.content}
-								</div>
-								<div className={styles.user__time}>{comment.created_at}</div>
-							</div>
-						))}
-						<div className={styles.textarea}>
+			</div>
+			{isCommentOpen && (
+				<div className={styles.commentContainer}>
+					{comments.map((comment) => (
+						<div className={styles.commentContainer__comment}>
 							<button
 								className={styles.user}
 								onClick={() =>
-									goNeighborBlog(userInfo!.user_id, userInfo!.username)
+									goNeighborBlog(comment.user_id, comment.username)
 								}
 							>
 								<div className={styles.personIcon}>
 									<PersonIcon />
 								</div>
-								<div className={styles.user__name}>{userInfo?.username}</div>
+								<div className={styles.user__name}>{comment.username}</div>
 							</button>
-							<textarea
-								value={commentText}
-								onChange={(e) => setCommentText(e.target.value)}
-								placeholder="댓글을 입력하세요"
-								className={styles.textarea__input}
-							/>
-							<button
-								className={styles.textarea__button}
-								onClick={handleSubmit}
-							>
-								등록
-							</button>
+							<div className={styles['commentContainer__comment--content']}>
+								{comment.content}
+							</div>
+							<div className={styles.user__time}>{comment.created_at}</div>
 						</div>
+					))}
+					<div className={styles.textarea}>
+						<button
+							className={styles.user}
+							onClick={() =>
+								goNeighborBlog(userInfo!.user_id, userInfo!.username)
+							}
+						>
+							<div className={styles.personIcon}>
+								<PersonIcon />
+							</div>
+							<div className={styles.user__name}>{userInfo?.username}</div>
+						</button>
+						<textarea
+							value={commentText}
+							onChange={(e) => setCommentText(e.target.value)}
+							placeholder="댓글을 입력하세요"
+							className={styles.textarea__input}
+						/>
+						<button className={styles.textarea__button} onClick={handleSubmit}>
+							등록
+						</button>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 }
