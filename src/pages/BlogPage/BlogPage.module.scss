@@ -2,3 +2,13 @@
   width: 1132px;
   margin: 24px auto;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__button {
+    width: 160px;
+  }
+}

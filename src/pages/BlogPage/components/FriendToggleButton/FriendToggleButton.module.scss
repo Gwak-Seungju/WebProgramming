@@ -1,0 +1,28 @@
+.button {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #61C3FA;
+  color: #61C3FA;
+  border-radius: 16px;
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: Pretendard;
+
+  &:hover {
+    color: #fff;
+    background-color: #61C3FA;
+  }
+
+  &--delete {
+    color: #FA6161;
+    border-color: #FA6161;
+
+    &:hover {
+      color: #fff;
+      background-color: #FA6161;
+    }
+  }
+}

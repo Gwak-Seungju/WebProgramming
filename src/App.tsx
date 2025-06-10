@@ -15,7 +15,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<BoardPage />}>
 					<Route index element={<MainPage />} />
-					<Route path="/blog/:userName/:userId" element={<BlogPage />} />
+					<Route path="/blog/:userName/:userId" element={<BlogPage />}>
+						<Route path=":postId" element={<BlogPage />} />
+					</Route>
 					<Route path="/search" element={<SearchPage />} />
 				</Route>
 				<Route path="/auth" element={<Auth />}>

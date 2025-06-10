@@ -1,3 +1,5 @@
+import { cn } from '@bcsdlab/utils';
+import styles from './FriendToggleButton.module.scss';
 import { useFriendStatus } from '@/pages/BlogPage/hooks/useFriendStatus';
 
 interface FriendToggleButtonProps {
@@ -17,7 +19,13 @@ export default function FriendToggleButton({
 	if (isLoading) return <button disabled>로딩 중...</button>;
 
 	return (
-		<button onClick={() => (isFriend ? deleteFriend() : addFriend())}>
+		<button
+			className={cn({
+				[styles.button]: true,
+				[styles['button--delete']]: isFriend,
+			})}
+			onClick={() => (isFriend ? deleteFriend() : addFriend())}
+		>
 			{isFriend ? '이웃 삭제' : '이웃 추가'}
 		</button>
 	);
