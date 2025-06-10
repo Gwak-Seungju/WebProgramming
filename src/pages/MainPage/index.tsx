@@ -1,6 +1,7 @@
 import { useLatestFriendPosts } from './hooks/useLatestFriendPosts';
 import styles from './MainPage.module.scss';
 import PersonIcon from '@/assets/person.svg';
+import PostsList from '@/components/PostsList';
 import { useNeighborList } from '@/hooks/neighbor/useNeighborList';
 import useUserInfo from '@/hooks/useUserInfo';
 
@@ -23,31 +24,7 @@ export default function MainPage() {
 				{!posts || posts.length === 0 ? (
 					<p>이웃 글이 없습니다.</p>
 				) : (
-					<div className={styles.posts}>
-						{posts.map((post) => (
-							<div key={post.post_id} className={styles.post}>
-								<div className={styles.post__info}>
-									<div className={styles.personIcon}>
-										<PersonIcon />
-									</div>
-									<div>
-										<div className={styles['post__info--user']}>
-											{post.username}
-										</div>
-										<div className={styles['post__info--time']}>
-											{post.created_at}
-										</div>
-									</div>
-								</div>
-								<h3 className={styles.post__title}>{post.title}</h3>
-								<p className={styles.post__content}>{post.content}</p>
-								<div>
-									<span>공감: {post.likes_count}</span> |{' '}
-									<span>댓글: {post.comments_count}</span>
-								</div>
-							</div>
-						))}
-					</div>
+					<PostsList posts={posts} />
 				)}
 			</div>
 			<div className={styles.my}>
@@ -65,12 +42,19 @@ export default function MainPage() {
 					<button>글 쓰기</button>
 				</div>
 				<div className={styles.my__neighbor}>
-					<div>이웃 목록</div>
-					<ul className={styles.neighborList}>
+					<div className={styles['my__neighbor--title']}>이웃 목록</div>
+					<div className={styles.neighborList}>
 						{(neighbors ?? []).map((neighbor) => (
-							<div key={neighbor.id}>{neighbor.username}</div>
+							<button key={neighbor.id} className={styles.my__userInfo}>
+								<div className={styles.personIcon}>
+									<PersonIcon />
+								</div>
+								<div key={neighbor.id} className={styles.neighborList__name}>
+									{neighbor.username}
+								</div>
+							</button>
 						))}
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
