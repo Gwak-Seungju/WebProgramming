@@ -1,4 +1,20 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  gap: 48px;
+}
+
+.logo {
+  background-color: inherit;
+  border: none;
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 100%;
+  text-align: center;
+  color: #237BFF;
 }
