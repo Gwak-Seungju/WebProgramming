@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import type { Post } from '@/utils/post';
+import type { Post } from '@/static/post';
 
 export const useLatestFriendPosts = (user_id: number | null) => {
 	return useSuspenseQuery<Post[]>({

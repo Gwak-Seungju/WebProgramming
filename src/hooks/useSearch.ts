@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import type { Post } from '@/utils/post';
+import type { Post } from '@/static/post';
 
 interface NeighborResult {
 	type: 'neighbor';

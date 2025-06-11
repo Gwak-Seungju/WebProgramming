@@ -15,9 +15,46 @@
   background-color: #fff;
 }
 
+.postMenu {
+  position: relative;
+
+  &__dropdown {
+    background-color: #fff;
+    border: none;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #828282;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 34%);
+
+  &__button {
+    width: 100px;
+    background-color: #fff;
+    border: none;
+    padding: 12px 0;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
 .post {
   padding: 24px 0;
   border-bottom: 1px solid #d2d2d2;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &__info {
     display: flex;

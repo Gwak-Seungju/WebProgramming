@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import type { Post } from '@/utils/post';
+import type { Post } from '@/static/post';
 
 const fetchPosts = async (userId: string): Promise<Post[]> => {
 	const { data } = await axios.get('http://localhost/term/post/posts.php', {

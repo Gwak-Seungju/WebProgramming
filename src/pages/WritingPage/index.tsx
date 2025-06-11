@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import usePostDetail from '../BlogPage/hooks/usePostDetail';
 import useAddPost from './hooks/useAddPost';
+import useEditPost from './hooks/useEditPost';
 import useUserInfo from '@/hooks/useUserInfo';
 
 export default function WritingPage() {
@@ -10,10 +12,44 @@ export default function WritingPage() {
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 	const { mutate: addPost, isPending } = useAddPost();
+	const { mutate: editPost } = useEditPost();
+
+	const [searchParams] = useSearchParams();
+	const postId = searchParams.get('postId');
+	const { data: postData } = usePostDetail(postId!, userInfo!.user_id);
+
+	useEffect(() => {
+		if (postData) {
+			const post = postData.post;
+			setTitle(post.title);
+			setContent(post.content);
+		}
+	}, [postData]);
 
 	const handleSubmit = () => {
 		if (!userInfo?.user_id || !title.trim() || !content.trim()) {
 			toast('모든 필드를 입력하세요.', { type: 'warning' });
+			return;
+		}
+
+		if (postId) {
+			editPost(
+				{
+					user_id: userInfo.user_id,
+					post_id: postId,
+					title,
+					content,
+				},
+				{
+					onSuccess: () => {
+						navigate(`/blog/${userInfo?.username}/${userInfo?.user_id}`);
+						toast('게시글이 수정되었습니다.', { type: 'success' });
+					},
+					onError: (err: any) => {
+						alert(err.message);
+					},
+				},
+			);
 			return;
 		}
 
@@ -44,7 +80,7 @@ export default function WritingPage() {
 				placeholder="내용을 입력하세요"
 			/>
 			<button onClick={handleSubmit} disabled={isPending}>
-				{isPending ? '작성 중...' : '작성하기'}
+				{postId ? '수정하기' : '작성하기'}
 			</button>
 		</div>
 	);
