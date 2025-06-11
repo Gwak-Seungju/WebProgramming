@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
+
 header {
   width: 100vw;
   min-width: 1132px;
@@ -23,9 +25,9 @@ header {
 .logo {
   background-color: inherit;
   border: none;
-  font-family: Pretendard;
-  font-weight: 600;
-  font-size: 56px;
+  font-family: 'SUIT', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
   line-height: 100%;
   text-align: center;
   color: #fff;

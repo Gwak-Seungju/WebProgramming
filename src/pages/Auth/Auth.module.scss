@@ -6,14 +6,16 @@
   height: 100vh;
   width: 100vw;
   gap: 48px;
+  background-color: #E7F3FC;
 }
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
 
 .logo {
   background-color: inherit;
   border: none;
-  font-family: Pretendard;
-  font-weight: 600;
-  font-size: 56px;
+  font-family: 'SUIT', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
   line-height: 100%;
   text-align: center;
   color: #237BFF;
