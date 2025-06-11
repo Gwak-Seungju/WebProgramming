@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 410px;
+
+  &__auth {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5.5px;
+    padding: 24px 20px;
+    border: 2px solid #d1d1d1;
+
+    &:first-child {
+      border-radius: 16px 16px 0 0;
+      margin-bottom: -2px;
+
+      &:focus-within {
+        z-index: 2;
+      }
+    }
+
+    &:nth-child(2):focus-within {
+      z-index: 3;
+    }
+
+    &:last-child {
+      border-radius: 0 0 16px 16px;
+      margin-top: -2px;
+    }
+
+    &:focus-within {
+      border: 2px solid #237BFF;
+    }
+
+    &--field {
+      width: 100%;
+      border: none;
+      background: none;
+      font-family: Pretendard;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19.2px;
+      letter-spacing: 0%;
+      color: #000;
+      outline: none;
+    }
+  }
+
+  &--password-hide {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  &--submit {
+    width: 100%;
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #237BFF;
+    color: #fff;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20.29px;
+    letter-spacing: 0%;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+}
