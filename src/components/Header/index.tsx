@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import ChevronDownIcon from 'assets/chevron-down.svg';
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
 import useUserInfo from '@/hooks/useUserInfo';
+import { useOutsideClick } from '@/utils/useOutsideClick';
 
 export default function Header() {
 	const navigate = useNavigate();
@@ -10,6 +12,10 @@ export default function Header() {
 	const { data: userInfo } = useUserInfo();
 	const [keyword, setKeyword] = useState('');
 	const [filter, setFilter] = useState<'post' | 'neighbor'>('post');
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { containerRef } = useOutsideClick({
+		onOutsideClick: () => setIsMenuOpen(false),
+	});
 
 	const handleSearch = () => {
 		navigate(`/search?keyword=${encodeURIComponent(keyword)}&filter=${filter}`);
@@ -33,18 +39,43 @@ export default function Header() {
 						G blog
 					</button>
 					<div className={styles.search}>
-						<select
-							className={styles.search__filter}
-							value={filter}
-							onChange={(e) => setFilter(e.target.value as 'post' | 'neighbor')}
-						>
-							<option value="post">글</option>
-							<option value="neighbor">이웃</option>
-						</select>
+						<div className={styles.searchMenu} ref={containerRef}>
+							<button
+								className={styles.searchMenu__dropdown}
+								onClick={() => setIsMenuOpen((state) => !state)}
+							>
+								<div>{filter}</div>
+								<ChevronDownIcon />
+							</button>
+							{isMenuOpen && (
+								<div className={styles.menu}>
+									<button
+										className={styles.menu__button}
+										onClick={() => {
+											setFilter('post');
+											setIsMenuOpen(false);
+										}}
+									>
+										post
+									</button>
+									<button
+										className={styles.menu__button}
+										onClick={() => {
+											setFilter('neighbor');
+											setIsMenuOpen(false);
+										}}
+									>
+										neighbor
+									</button>
+								</div>
+							)}
+						</div>
 						<input
 							type="text"
 							className={styles.search__input}
-							placeholder="검색어를 입력해주세요"
+							placeholder={
+								userInfo ? '검색어를 입력해주세요' : '로그인 후 사용가능합니다.'
+							}
 							value={keyword}
 							onChange={(e) => setKeyword(e.target.value)}
 							onKeyUp={(e) => {
@@ -52,8 +83,13 @@ export default function Header() {
 									handleSearch();
 								}
 							}}
+							disabled={!userInfo}
 						/>
-						<button className={styles.search__button} onClick={handleSearch}>
+						<button
+							className={styles.search__button}
+							onClick={handleSearch}
+							disabled={!userInfo}
+						>
 							검색
 						</button>
 					</div>

@@ -16,8 +16,23 @@
   background-color: #fff;
 }
 
-.writings {
+.neighborPosts {
+  display: flex;
+  flex-direction: column;
 
+  & > p {
+    text-align: center;
+  }
+
+  & button {
+    background-color: #fff;
+    color: #237BFF;
+    padding: 0;
+    border: none;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 
 .posts {
@@ -98,6 +113,12 @@
       font-family: Pretendard;
       font-weight: 600;
       font-size: 16px;
+
+      &--nonLogin {
+        color: #828282;
+        font-weight: 400;
+        font-size: 14px;
+      }
     }
 
     &--logout {
@@ -150,4 +171,12 @@
     font-size: 13px;
     margin-left: 6px;
   }
+}
+
+.guide {
+  text-align: center;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
 }

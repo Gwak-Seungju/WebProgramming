@@ -35,7 +35,23 @@ header {
 
 .search {
   display: flex;
+  align-items: center;
   gap: 8px;
+
+  &__filter {
+    position: relative;
+    box-sizing: border-box;
+    height: fit-content;
+    padding: 8px 0;
+    border: none;
+    border-radius: 4px;
+
+    &--options {
+      position: absolute;
+      top: 24px;
+      left: 0;
+    }
+  }
 
   &__input {
     border: none;
@@ -43,7 +59,11 @@ header {
     box-sizing: border-box;
     width: 240px;
     height: 48px;
-    padding: 8px;   
+    padding: 8px;
+
+    &:disabled {
+      background-color: #E7F3FC;
+    }
   }
 
   &__button {
@@ -55,6 +75,57 @@ header {
     
     &:hover {
       background-color: #e1e1e1;
+    }
+
+    &:disabled {
+      background-color: #E7F3FC;
+    }
+  }
+}
+
+.searchMenu {
+  position: relative;
+  width: 90px;
+  box-sizing: border-box;
+
+  &__dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 8px;
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+
+    & > svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 44px;
+  left: -1px;
+  background-color: #fff;
+  border: 1px solid #828282;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 34%);
+  width: 100%;
+
+  &__button {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: none;
+    padding: 12px 8px;
+    border-radius: 4px;
+    text-align: start;
+
+    &:hover {
+      background-color: #eee;
     }
   }
 }

@@ -24,6 +24,7 @@
     border: 2px solid #d1d1d1;
     color: #a2a2a2;
     border-radius: 16px 16px 0 0;
+    background-color: #fff;
   }
 
   &__input--field-id:focus-within {
@@ -44,6 +45,7 @@
     align-items: center;
     gap: 10px;
     border: 2px solid #d1d1d1;
+    background-color: #fff;
     border-radius: 0 0 16px 16px;
   }
 
@@ -61,7 +63,7 @@
 
   &__input--icon {
     border: 0;
-    background-color: #fff;
+    background-color: inherit;
     cursor: pointer;
   }
 
@@ -102,6 +104,7 @@
     padding: 0;
     border: none;
     cursor: pointer;
+    background-color: inherit;
 
     & > span {
       color: #000;
