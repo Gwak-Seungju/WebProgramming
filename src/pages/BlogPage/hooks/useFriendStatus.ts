@@ -1,6 +1,7 @@
 // hooks/useFriendStatus.ts
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export function useFriendStatus(myId: string, targetId: string) {
 	const queryClient = useQueryClient();
@@ -22,8 +23,10 @@ export function useFriendStatus(myId: string, targetId: string) {
 				my_id: myId,
 				target_id: targetId,
 			}),
-		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] });
+			toast('이웃이 추가되었습니다.', { type: 'info' });
+		},
 	});
 
 	const deleteFriend = useMutation({
@@ -32,8 +35,10 @@ export function useFriendStatus(myId: string, targetId: string) {
 				my_id: myId,
 				target_id: targetId,
 			}),
-		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] });
+			toast('이웃이 삭제되었습니다.', { type: 'error' });
+		},
 	});
 
 	return {

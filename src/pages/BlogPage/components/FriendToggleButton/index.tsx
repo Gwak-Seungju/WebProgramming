@@ -11,12 +11,7 @@ export default function FriendToggleButton({
 	myId,
 	targetId,
 }: FriendToggleButtonProps) {
-	const { isFriend, isLoading, addFriend, deleteFriend } = useFriendStatus(
-		myId,
-		targetId,
-	);
-
-	if (isLoading) return <button disabled>로딩 중...</button>;
+	const { isFriend, addFriend, deleteFriend } = useFriendStatus(myId, targetId);
 
 	return (
 		<button
