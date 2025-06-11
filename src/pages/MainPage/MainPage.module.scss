@@ -3,6 +3,7 @@
   margin: 24px auto;
   display: grid;
   grid-template-columns: 3fr 1fr;
+  column-gap: 24px;
 }
 
 .personIcon {
@@ -24,7 +25,7 @@
     text-align: center;
   }
 
-  & button {
+  &__button {
     background-color: #fff;
     color: #237BFF;
     padding: 0;

@@ -11,6 +11,7 @@ import useUserInfo from '@/hooks/useUserInfo';
 export default function MainPage() {
 	const navigate = useNavigate();
 	const { data: userInfo } = useUserInfo();
+	console.log(userInfo);
 	const {
 		data: posts,
 		isLoading,
@@ -37,8 +38,13 @@ export default function MainPage() {
 					)
 				) : (
 					<p>
-						<button onClick={() => navigate('/auth')}>로그인</button>하여 이웃의
-						글을 확인해보세요.
+						<button
+							className={styles.neighborPosts__button}
+							onClick={() => navigate('/auth')}
+						>
+							로그인
+						</button>
+						하여 이웃의 글을 확인해보세요.
 					</p>
 				)}
 			</div>

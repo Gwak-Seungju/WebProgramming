@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 interface LoginForm {
@@ -9,8 +8,6 @@ interface LoginForm {
 }
 
 export default function useLogin() {
-	const navigate = useNavigate();
-
 	const mutate = useMutation({
 		mutationFn: async (form: LoginForm) => {
 			const res = await axios.post(
@@ -25,7 +22,7 @@ export default function useLogin() {
 		onSuccess: (data) => {
 			if (data.success) {
 				localStorage.setItem('user_id', data.user_id);
-				navigate('/');
+				window.location.href = '/';
 			} else {
 				toast('로그인에 실패했습니다.', { type: 'error' });
 			}

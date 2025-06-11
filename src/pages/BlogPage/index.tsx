@@ -49,15 +49,25 @@ export default function BlogPage() {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>
-					<h1>{userName}님의 블로그</h1>
-					<button onClick={openNeighborList}>이웃 목록</button>
+					<h1 className={styles.header__title}>{userName}님의 블로그</h1>
+					<button
+						className={styles.header__neighbor}
+						onClick={openNeighborList}
+					>
+						이웃 목록
+					</button>
 				</div>
 				{myId !== userId ? (
 					<div className={styles.header__button}>
 						<FriendToggleButton myId={myId!} targetId={userId!} />
 					</div>
 				) : (
-					<button onClick={() => navigate('/write')}>글 쓰기</button>
+					<button
+						className={styles.header__write}
+						onClick={() => navigate('/write')}
+					>
+						글 쓰기
+					</button>
 				)}
 			</div>
 			{postId ? <PostDetail /> : <PostsList posts={posts!} />}

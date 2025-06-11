@@ -8,7 +8,37 @@
   justify-content: space-between;
   align-items: center;
 
+  &__title {
+    margin: 12px 0;
+  }
+
   &__button {
     width: 160px;
+  }
+
+  &__neighbor {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 4px 0;
+    width: 72px;
+    border: 1px solid #818181;
+    border-radius: 4px;
+    font-size: 12px;
+    
+    &:hover {
+      background-color: #e1e1e1;
+    }
+  }
+
+  &__write {
+    background-color: #fff;
+    padding: 12px;
+    width: 120px;
+    border-radius: 8px;
+    border: 1px solid #818181;
+
+    &:hover {
+      background-color: #e1e1e1;
+    }
   }
 }

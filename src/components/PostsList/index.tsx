@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './PostsList.module.scss';
 import type { Post } from '@/static/post';
@@ -65,6 +65,9 @@ function PostMenu({ userId, postId }: { userId: number; postId: number }) {
 }
 
 export default function PostsList({ posts }: PostsListProps) {
+	const { userId } = useParams();
+	const myId = localStorage.getItem('user_id');
+
 	const navigate = useNavigate();
 
 	const goNeighborBlog = (id: number, name: string) => {
@@ -98,7 +101,9 @@ export default function PostsList({ posts }: PostsListProps) {
 								</div>
 							</div>
 						</button>
-						<PostMenu userId={post.user_id} postId={post.post_id} />
+						{userId && userId === myId && (
+							<PostMenu userId={post.user_id} postId={post.post_id} />
+						)}
 					</div>
 					<h3
 						className={styles.post__title}

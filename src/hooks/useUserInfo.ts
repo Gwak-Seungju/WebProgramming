@@ -28,8 +28,6 @@ export default function useUserInfo() {
 
 		queryFn: () => (userId ? fetchUserInfo(userId) : null),
 
-		staleTime: 1000 * 60 * 10, // 10 minutes
-		gcTime: 1000 * 60 * 60, // 1 hour
 		retry: 1,
 	});
 }
