@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './SearchPage.module.scss';
 import PersonIcon from '@/assets/person.svg';
 import PostsList from '@/components/PostsList';
@@ -6,6 +6,7 @@ import { useSearch } from '@/hooks/useSearch';
 
 export default function SearchPage() {
 	const [searchParams] = useSearchParams();
+	const navigate = useNavigate();
 	const keyword = searchParams.get('keyword') || '';
 	const filter = (searchParams.get('filter') as 'post' | 'neighbor') || 'post';
 
@@ -16,7 +17,12 @@ export default function SearchPage() {
 
 	const results = filter === 'neighbor' ? data.neighbors : data.posts;
 
-	if (!results || results.length === 0) return <div>검색 결과가 없습니다.</div>;
+	const goNeighborBlog = (id: number, name: string) => {
+		navigate(`/blog/${name}/${id}`);
+	};
+
+	if (!results || results.length === 0)
+		return <div className={styles.container}>검색 결과가 없습니다.</div>;
 
 	return (
 		<div className={styles.container}>
@@ -29,7 +35,10 @@ export default function SearchPage() {
 				{filter === 'neighbor' ? (
 					results.map((item: any, index: number) => (
 						<div key={index} className={styles.content__result}>
-							<button className={styles.user}>
+							<button
+								className={styles.user}
+								onClick={() => goNeighborBlog(item.user_id, item.username)}
+							>
 								<div className={styles.personIcon}>
 									<PersonIcon />
 								</div>

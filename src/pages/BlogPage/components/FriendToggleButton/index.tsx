@@ -13,6 +13,10 @@ export default function FriendToggleButton({
 }: FriendToggleButtonProps) {
 	const { isFriend, addFriend, deleteFriend } = useFriendStatus(myId, targetId);
 
+	if (myId === targetId) {
+		return <div className={styles.me}>나</div>;
+	}
+
 	return (
 		<button
 			className={cn({

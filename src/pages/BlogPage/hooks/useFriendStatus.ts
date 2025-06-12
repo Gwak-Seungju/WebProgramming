@@ -25,6 +25,8 @@ export function useFriendStatus(myId: string, targetId: string) {
 			}),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] });
+			queryClient.invalidateQueries({ queryKey: ['friendList'] });
+			queryClient.invalidateQueries({ queryKey: ['latestFriendPosts'] });
 			toast('이웃이 추가되었습니다.', { type: 'info' });
 		},
 	});
@@ -37,6 +39,8 @@ export function useFriendStatus(myId: string, targetId: string) {
 			}),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['isFriend', myId, targetId] });
+			queryClient.invalidateQueries({ queryKey: ['friendList'] });
+			queryClient.invalidateQueries({ queryKey: ['latestFriendPosts'] });
 			toast('이웃이 삭제되었습니다.', { type: 'error' });
 		},
 	});

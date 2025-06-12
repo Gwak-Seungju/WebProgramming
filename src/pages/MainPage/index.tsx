@@ -1,4 +1,5 @@
 import { cn } from '@bcsdlab/utils';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLatestFriendPosts } from './hooks/useLatestFriendPosts';
@@ -10,8 +11,8 @@ import useUserInfo from '@/hooks/useUserInfo';
 
 export default function MainPage() {
 	const navigate = useNavigate();
+	const queryClient = useQueryClient();
 	const { data: userInfo } = useUserInfo();
-	console.log(userInfo);
 	const {
 		data: posts,
 		isLoading,
@@ -21,6 +22,16 @@ export default function MainPage() {
 
 	const goNeighborBlog = (id: number, name: string) => {
 		navigate(`/blog/${name}/${id}`);
+	};
+
+	const logout = () => {
+		localStorage.removeItem('user_id');
+		queryClient.removeQueries({ queryKey: ['userInfo'] });
+		if (window.location.pathname === '/') {
+			navigate(0);
+		} else {
+			navigate('/');
+		}
 	};
 
 	if (isLoading) return <p>불러오는 중...</p>;
@@ -64,7 +75,9 @@ export default function MainPage() {
 						</div>
 					</div>
 					{userInfo && (
-						<button className={styles['my__info--logout']}>로그아웃</button>
+						<button className={styles['my__info--logout']} onClick={logout}>
+							로그아웃
+						</button>
 					)}
 				</div>
 				<div className={styles.my__blog}>
@@ -94,7 +107,7 @@ export default function MainPage() {
 				<div className={styles.my__neighbor}>
 					<div className={styles['my__neighbor--title']}>이웃 목록</div>
 					<div className={styles.neighborList}>
-						{!neighbors ? (
+						{!neighbors || neighbors.length === 0 ? (
 							<div className={styles.guide}>
 								현재 이웃이 없습니다. <br /> 이웃을 추가해보세요.
 							</div>

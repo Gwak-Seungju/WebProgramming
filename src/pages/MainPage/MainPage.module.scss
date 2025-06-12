@@ -150,6 +150,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    overflow: scroll;
+    max-height: 500px;
 
     &--title {
       font-family: Pretendard;
