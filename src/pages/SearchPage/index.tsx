@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import FriendToggleButton from '../BlogPage/components/FriendToggleButton';
 import styles from './SearchPage.module.scss';
 import PersonIcon from '@/assets/person.svg';
 import PostsList from '@/components/PostsList';
@@ -6,6 +7,7 @@ import { useSearch } from '@/hooks/useSearch';
 
 export default function SearchPage() {
 	const [searchParams] = useSearchParams();
+	const userId = localStorage.getItem('user_id');
 	const navigate = useNavigate();
 	const keyword = searchParams.get('keyword') || '';
 	const filter = (searchParams.get('filter') as 'post' | 'neighbor') || 'post';
@@ -34,16 +36,24 @@ export default function SearchPage() {
 			<div className={styles.content}>
 				{filter === 'neighbor' ? (
 					results.map((item: any, index: number) => (
-						<div key={index} className={styles.content__result}>
-							<button
-								className={styles.user}
-								onClick={() => goNeighborBlog(item.user_id, item.username)}
-							>
-								<div className={styles.personIcon}>
-									<PersonIcon />
-								</div>
-								<div className={styles.user__name}>{item.username}</div>
-							</button>
+						<div className={styles.neighborContainer}>
+							<div key={index} className={styles.content__result}>
+								<button
+									className={styles.user}
+									onClick={() => goNeighborBlog(item.user_id, item.username)}
+								>
+									<div className={styles.personIcon}>
+										<PersonIcon />
+									</div>
+									<div className={styles.user__name}>{item.username}</div>
+								</button>
+							</div>
+							<div className={styles.neighborContainer__act}>
+								<FriendToggleButton
+									myId={String(userId)}
+									targetId={String(item.user_id)}
+								/>
+							</div>
 						</div>
 					))
 				) : (
