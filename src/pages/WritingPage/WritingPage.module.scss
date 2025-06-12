@@ -1,0 +1,43 @@
+.container {
+  width: 1132px;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__title {
+    border: none;
+    padding: 16px 0;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 600;
+
+    &::placeholder {
+      color: #00000099;
+    }
+  }
+
+  &__content {
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid #828282;
+    border-radius: 4px;
+    min-height: 600px;
+    overflow: hidden;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    width: fit-content;
+    padding: 8px 16px;
+    background-color: #237BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    align-self: end;
+  }
+}

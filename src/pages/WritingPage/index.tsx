@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import usePostDetail from '../BlogPage/hooks/usePostDetail';
 import useAddPost from './hooks/useAddPost';
 import useEditPost from './hooks/useEditPost';
+import styles from './WritingPage.module.scss';
 import useUserInfo from '@/hooks/useUserInfo';
 
 export default function WritingPage() {
 	const navigate = useNavigate();
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const { data: userInfo } = useUserInfo();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
@@ -25,6 +27,13 @@ export default function WritingPage() {
 			setContent(post.content);
 		}
 	}, [postData]);
+
+	useEffect(() => {
+		if (textareaRef.current) {
+			textareaRef.current.style.height = 'auto'; // 초기화
+			textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // 실제 내용만큼 확장
+		}
+	}, [content]); // content가 바뀔 때마다 호출
 
 	const handleSubmit = () => {
 		if (!userInfo?.user_id || !title.trim() || !content.trim()) {
@@ -68,18 +77,25 @@ export default function WritingPage() {
 	};
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<input
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 				placeholder="제목을 입력하세요"
+				className={styles.container__title}
 			/>
 			<textarea
+				ref={textareaRef}
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
 				placeholder="내용을 입력하세요"
+				className={styles.container__content}
 			/>
-			<button onClick={handleSubmit} disabled={isPending}>
+			<button
+				onClick={handleSubmit}
+				className={styles.container__button}
+				disabled={isPending}
+			>
 				{postId ? '수정하기' : '작성하기'}
 			</button>
 		</div>
